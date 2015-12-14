@@ -4,7 +4,8 @@ Style your commandline output from python scripts
 ### How it works:
 1. Embed XML-like tags into a string, for example
 `"This is <green>an example</green>."`
-2. The recognized tags will be converted to escaped **ANSI/VT100 control sequences**.
+2. The recognized tags will be converted to escaped **ANSI/VT100 control sequences**.  
+They look like this: `"This is \x1b[32man example\x1b[39m."`. If you `print()` this it'll turn into color.
 
 ### Usage:
 
@@ -12,7 +13,7 @@ Style your commandline output from python scripts
 import shellcolors
 
 # basic
-raw = "some <greeb>string</green> with <red><bold>styling</bold></red>"
+raw = "some <green>string</green> with <red><bold>styling</bold></red>"
 styled = shellcolors.compile(raw)
 print(styled)
 
@@ -21,7 +22,7 @@ styled = shellcolors.style("yellow", "bold", "This string will be yellow and bol
 print(styled)
 
 # style/compile a string and print it directly
-shellcolors.cprint("some <greeb>string</green> with <red><bold>styling</bold></red>")
+shellcolors.cprint("some <green>string</green> with <red><bold>styling</bold></red>")
 shellcolors.sprint("yellow", "bold", "This string will be yellow and bold.")
 
 # all colors and styles are available as a function
