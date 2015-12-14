@@ -59,13 +59,18 @@ styles = {
     "hidden":        8,
     "strikethrough": 9,
     
+    # ANSI/VT100 Control sequences compatible names
+    "bright":     1, # bold
+    "underlined": 4, # underline
+    "reverse":    7, # invert
+    
     # html versions
-    "b":      1,
-    "strong": 1,
-    "i":      3,
-    "em":     3,
-    "u":      4,
-    "s":      9,
+    "b":      1, # bold
+    "strong": 1, # bold
+    "i":      3, # italic
+    "em":     3, # italic
+    "u":      4, # underline
+    "s":      9, # strikethrough
 }
 style_end_add = 20 # e.g. end_bold = 21
 
