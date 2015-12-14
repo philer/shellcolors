@@ -1,47 +1,71 @@
 #!/usr/bin/python3
-"""
-Colored/Formatted output on bash (and zsh and some others)
+# 
+# Colored/Formatted output on bash (and zsh and some others)
+# 
+# Create html-like style tags in your strings and have them turned into actual
+# styling.
+# 
+# Usage:
+#     import shellcolors
+#     colored_string = shellcolors.compile("<red>some <bold>text</bold></red>")
+#     red_string     = shellcolors.red("some text")
+#     shellcolors.sprint("green", "bold", "this will be printed")
+# 
+# 
+# Note that closing tags are expected in the correct order(strict XML).
+# By default all styles are closed at the end of a string.
+# 
+# Example:
+#     The following are equivalent (by default)
+#     "<red><blue>foo</blue></red>"
+#     "<red><blue>foo</red>"
+#     "<red><blue>foo"
+#     "<red><blue>foo</blue></red>"
+# 
+# There is a special tag <reset>, which will reset all styles to default.
+# This tag doesn't need to be closed.
+# 
+# Text colors:
+#     default,
+#     white, black, dark_grey, light_grey,
+#     red, green, yellow, blue, purple, cyan,
+#     light_red, light_green, light_yellow, light_blue, light_purple, light_cyan,
+# 
+# Background colors:
+#     All colors as bg_*
+# 
+# Effects:
+#     bold, dim, italic, underline, blink, invert, hidden, strikethrough
+# 
+# Not all effects are supported by all terminals. If you want to be safe your
+# formatting looks okay you should use only bold, underline and invert.
+# A good compatibility table can be found at
+# http://misc.flogisoft.com/bash/tip_colors_and_formatting#terminals_compatibility
+# 
+# ---
+# 
+# Copyright (c) 2015 Philipp Miller
+# 
+# Permission is hereby granted, free of charge, to any person obtaining
+# a copy of this software and associated documentation files (the
+# "Software"), to deal in the Software without restriction, including
+# without limitation the rights to use, copy, modify, merge, publish,
+# distribute, sublicense, and/or sell copies of the Software, and to
+# permit persons to whom the Software is furnished to do so, subject to
+# the following conditions:
+# 
+# The above copyright notice and this permission notice shall be
+# included in all copies or substantial portions of the Software.
+# 
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+# EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+# MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+# NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+# LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+# OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+# WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+# 
 
-Create html-like style tags in your strings and have them turned into actual
-styling.
-
-Usage:
-    import shellcolors
-    colored_string = shellcolors.compile("<red>some <bold>text</bold></red>")
-    red_string     = shellcolors.red("some text")
-    shellcolors.sprint("green", "bold", "this will be printed")
-
-
-Note that closing tags are expected in the correct order(strict XML).
-By default all styles are closed at the end of a string.
-
-Example:
-    The following are equivalent (by default)
-    "<red><blue>foo</blue></red>"
-    "<red><blue>foo</red>"
-    "<red><blue>foo"
-    "<red><blue>foo</blue></red>"
-
-There is a special tag <reset>, which will reset all styles to default.
-This tag doesn't need to be closed.
-
-Text colors:
-    default,
-    white, black, dark_grey, light_grey,
-    red, green, yellow, blue, purple, cyan,
-    light_red, light_green, light_yellow, light_blue, light_purple, light_cyan,
-
-Background colors:
-    All colors as bg_*
-
-Effects:
-    bold, dim, italic, underline, blink, invert, hidden, strikethrough
-
-Not all effects are supported by all terminals. If you want to be safe your
-formatting looks okay you should use only bold, underline and invert.
-A good compatibility table can be found at
-http://misc.flogisoft.com/bash/tip_colors_and_formatting#terminals_compatibility
-"""
 
 import sys
 import re
@@ -63,7 +87,7 @@ styles = {
     "bright":     1, # bold
     "underlined": 4, # underline
     "reverse":    7, # invert
-    
+
     # html versions
     "b":      1, # bold
     "strong": 1, # bold
